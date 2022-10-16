@@ -129,3 +129,27 @@ The most common depth of snowfall is 25mm which appears 31022 times.
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 The temperature in January have a slow trend of climbing as the year pass and in 1993, 2002, and 2003 it was a little off the trend but not too much to be considered as an outlier. For Temperature in July, the trend is not as obvious and also no obvious outlier is observed.
+
+
+```{r}
+#tmax vs tmin for the full dataset
+ny_noaa %>% 
+  filter(!is.na(tmax),!is.na(tmin)) %>% 
+  mutate(tmax_2 = as.numeric(tmax, na.rm = TRUE)) %>% 
+  mutate(tmin_2 = as.numeric(tmin, na.rm = TRUE)) %>% 
+  ggplot(aes(x=tmax,y=tmin))+
+  geom_hex()+
+  ggtitle('tmax vs tmin for the full dataset')+
+  theme(legend.position = "bottom")
+```
+```{r}
+#make a plot showing the distribution of snowfall values greater than 0 and less than 100 separately by year.
+ny_noaa %>% 
+  filter(!is.na(snow)) %>%
+  filter(snow>0,snow<100) %>%
+  ggplot(aes(x=snow, color=year))+
+  geom_density( alpha=0.3)+
+  ggtitle('The distribution of snowfall values between 0 and 100 by year')+
+  theme(legend.position = "bottom")
+```
+

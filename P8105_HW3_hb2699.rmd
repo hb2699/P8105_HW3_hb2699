@@ -53,3 +53,21 @@ accel %>%
     caption = "Total activity across minutes")
 ```
 
+```{r}
+accel %>% 
+  group_by(minute,day) %>% 
+  mutate(minute =as.numeric(minute)) %>% 
+  ggplot(aes(x = minute/60, y = activity)) + 
+  geom_point(aes(color = day), alpha = .5) + 
+   scale_x_continuous(
+    breaks = c(0, 3, 6, 9, 12, 15, 18, 21, 24),
+    labels = c("0hr", "3hr", "6hr", "9hr", "12hr", "15hr", "18hr", "21hr", "24hr")) + 
+  labs(
+    title = "Track of Activity Time with one-minute interval",
+    x = "Hours",
+    y = "Activity",
+    caption = "single_panel plot")+
+  theme(plot.title = element_text(size=10))
+
+```
+

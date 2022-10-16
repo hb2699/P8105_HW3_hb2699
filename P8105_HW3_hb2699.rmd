@@ -110,6 +110,7 @@ ny_noaa %>%
 The most common depth of snowfall is 25mm which appears 31022 times.
 
 ```{r}
+#Make a two-panel plot showing the average max temperature in January and in July in each station across years.
 #label <- c('01'='January', '07'='July')
  ny_noaa %>% 
    filter(month == 1| month == 7) %>% 
@@ -127,3 +128,4 @@ The most common depth of snowfall is 25mm which appears 31022 times.
   ggtitle('The mean max temperature in January and July in each station across years')+
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
+The temperature in January have a slow trend of climbing as the year pass and in 1993, 2002, and 2003 it was a little off the trend but not too much to be considered as an outlier. For Temperature in July, the trend is not as obvious and also no obvious outlier is observed.

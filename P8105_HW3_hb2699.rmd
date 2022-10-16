@@ -1,0 +1,55 @@
+---
+title: "P8105_HW3_hb2699"
+author: "Han Bao"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(readr)
+```
+
+```{r}
+# install.packages("devtools")
+devtools::install_github("p8105/p8105.datasets")
+```
+
+
+#Question 2
+```{r}
+# tidy the dataset 
+accel<- read_csv(file = "./accel_data.csv") %>% 
+  janitor::clean_names() %>% 
+  pivot_longer(
+    activity_1:activity_1440, 
+    names_to = "minute",
+    values_to = "activity",
+    names_prefix = "activity_", 
+  ) %>% 
+  mutate(
+    day_of_week = recode(day,
+                         "Monday" = "Weekday", 
+                         "Tuesday" = "Weekday", 
+                         "Wednesday" = "Weekday", 
+                         "Thursday" = "Weekday", 
+                         "Friday" = "Weekday", 
+                         "Saturday" = "Weekend", 
+                         "Sunday" = "Weekend"))
+```
+
+```{r}
+nrow(accel)
+ncol(accel)
+```
+The dataset contains 50400 rows and 6 columns.
+
+```{r}
+#aggregate the dataset across with minutes
+accel %>% 
+  group_by(week,day) %>% 
+  summarize(total_activity=sum(activity)) %>% 
+  knitr::kable(
+    caption = "Total activity across minutes")
+```
+

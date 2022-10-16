@@ -71,3 +71,14 @@ accel %>%
 #git push -f
 ```
 From the graph we can see that the most active period of time for the 63-year-old male is between 6am and 12pm and between 15pm and 22pm. The other times during night are lack of activity because he is sleeping and the two hours lack of activity after noon may be because he's tired after the lunch. Besides, he is more active at night in weekdays than in weekends.
+
+#Question 3
+```{r}
+# install.packages("devtools")
+devtools::install_github("p8105/p8105.datasets",force = TRUE)
+```
+
+```{r}
+library(p8105.datasets)
+data("ny_noaa")
+```

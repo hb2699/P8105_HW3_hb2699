@@ -95,3 +95,17 @@ ny_noaa = ny_noaa %>%
     mutate(ny_noaa,prcp = as.numeric(prcp)/10 ) %>% 
     mutate(ny_noaa,tmin = as.numeric(tmin)/10 ) 
 ```
+
+```{r}
+#Find the most common value 
+ny_noaa %>% 
+  group_by(snow) %>% 
+  distinct() %>% 
+  summarize(freq = n()) %>% 
+  arrange(desc(freq)) %>% 
+  filter(!snow== 0) %>% 
+  head(1) %>% 
+  knitr::kable()
+```
+The most common depth of snowfall is 25mm which appears 31022 times.
+

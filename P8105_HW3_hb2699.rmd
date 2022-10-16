@@ -139,8 +139,7 @@ ny_noaa %>%
   mutate(tmin_2 = as.numeric(tmin, na.rm = TRUE)) %>% 
   ggplot(aes(x=tmax,y=tmin))+
   geom_hex()+
-  ggtitle('tmax vs tmin for the full dataset')+
-  theme(legend.position = "bottom")
+  ggtitle('tmax vs tmin for the full dataset')
 ```
 ```{r}
 #make a plot showing the distribution of snowfall values greater than 0 and less than 100 separately by year.
@@ -149,7 +148,6 @@ ny_noaa %>%
   filter(snow>0,snow<100) %>%
   ggplot(aes(x=snow, color=year))+
   geom_density( alpha=0.3)+
-  ggtitle('The distribution of snowfall values between 0 and 100 by year')+
-  theme(legend.position = "bottom")
+  ggtitle('The distribution of snowfall values between 0 and 100 by year')
 ```
 

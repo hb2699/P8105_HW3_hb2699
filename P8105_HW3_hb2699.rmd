@@ -109,3 +109,21 @@ ny_noaa %>%
 ```
 The most common depth of snowfall is 25mm which appears 31022 times.
 
+```{r}
+#label <- c('01'='January', '07'='July')
+ ny_noaa %>% 
+   filter(month == 1| month == 7) %>% 
+   mutate(month = month.abb[month]) %>% 
+   filter(!is.na(tmax)) %>% 
+   mutate(tmax = as.numeric(tmax)) %>% 
+   group_by(month,year,id) %>% 
+   summarise(mean_month = mean(tmax)) %>% 
+   ggplot(aes(
+     x=factor(year),
+     y=mean_month,
+     color=year))+
+   geom_point() +
+  facet_grid(.~month)+
+  ggtitle('The mean max temperature in January and July in each station across years')+
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
